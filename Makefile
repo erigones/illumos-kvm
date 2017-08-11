@@ -57,7 +57,8 @@ KERNEL_CPPFLAGS = \
 	-nostdinc \
 	-I$(KERNEL_SOURCE)/usr/src/uts/common \
 	-I$(KERNEL_SOURCE)/usr/src/uts/intel \
-	-I$(KERNEL_SOURCE)/usr/src/uts/i86pc
+	-I$(KERNEL_SOURCE)/usr/src/uts/i86pc \
+	-I/usr/include
 
 DMOD_CPPFLAGS = \
 	$(ALWAYS_CPPFLAGS) \
