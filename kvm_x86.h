@@ -155,6 +155,11 @@ typedef struct kvm_msrs {
 	struct kvm_msr_entry entries[100];
 } kvm_msrs_t;
 
+typedef struct msr_data {
+	struct kvm_msrs info;
+	struct kvm_msr_entry entries[100];
+} msr_data_t;
+
 /* for KVM_GET_MSR_INDEX_LIST */
 typedef struct kvm_msr_list {
 	uint32_t nmsrs; /* number of msrs in entries */

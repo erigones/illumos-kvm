@@ -367,8 +367,8 @@ extern int kvm_arch_vcpu_ioctl_set_guest_debug(struct kvm_vcpu *,
     struct kvm_guest_debug *);
 extern int kvm_arch_vcpu_ioctl_run(struct kvm_vcpu *);
 
-extern int kvm_vcpu_ioctl_get_msrs(struct kvm_vcpu *, struct kvm_msrs *, int *);
-extern int kvm_vcpu_ioctl_set_msrs(struct kvm_vcpu *, struct kvm_msrs *, int *);
+extern int kvm_vcpu_ioctl_get_msrs(struct kvm_vcpu *, struct msr_data *, int *);
+extern int kvm_vcpu_ioctl_set_msrs(struct kvm_vcpu *, struct msr_data *, int *);
 extern int kvm_vcpu_ioctl_x86_setup_mce(struct kvm_vcpu *, uint64_t *);
 extern int kvm_vcpu_ioctl_get_cpuid2(struct kvm_vcpu *, struct kvm_cpuid2 *);
 extern int kvm_vcpu_ioctl_set_cpuid2(struct kvm_vcpu *, struct kvm_cpuid2 *,
