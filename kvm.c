@@ -2631,6 +2631,11 @@ kvm_ioctl(dev_t dev, int cmd, intptr_t arg, int md, cred_t *cr, int *rv)
 			break;
 		}
 
+		if (copyin(argp, &chip, sizeof chip) != 0) {
+			rval = EFAULT;
+			break;
+		}
+
 		rval = kvm_vm_ioctl_get_irqchip(kvmp, &chip);
 
 		if (rval == 0 && copyout(&chip, argp, sz) != 0) {
