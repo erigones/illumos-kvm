@@ -1525,14 +1525,14 @@ __msr_io(struct kvm_vcpu *vcpu, struct kvm_msrs *msrs,
 }
 
 int
-kvm_vcpu_ioctl_get_msrs(struct kvm_vcpu *vcpu, struct kvm_msrs *msrs, int *rv)
+kvm_vcpu_ioctl_get_msrs(struct kvm_vcpu *vcpu, struct msr_data *msrs, int *rv)
 {
 	int r;
 
-	if (msrs->nmsrs >= MAX_IO_MSRS)
+	if (msrs->info.nmsrs >= MAX_IO_MSRS)
 		return (-E2BIG);
 
-	if ((r = __msr_io(vcpu, msrs, msrs->entries, kvm_get_msr)) < 0)
+	if ((r = __msr_io(vcpu, &msrs->info, msrs->entries, kvm_get_msr)) < 0)
 		return (r);
 
 	*rv = r;
@@ -1541,14 +1541,14 @@ kvm_vcpu_ioctl_get_msrs(struct kvm_vcpu *vcpu, struct kvm_msrs *msrs, int *rv)
 }
 
 int
-kvm_vcpu_ioctl_set_msrs(struct kvm_vcpu *vcpu, struct kvm_msrs *msrs, int *rv)
+kvm_vcpu_ioctl_set_msrs(struct kvm_vcpu *vcpu, struct msr_data *msrs, int *rv)
 {
 	int r;
 
-	if (msrs->nmsrs >= MAX_IO_MSRS)
+	if (msrs->info.nmsrs >= MAX_IO_MSRS)
 		return (-E2BIG);
 
-	if ((r = __msr_io(vcpu, msrs, msrs->entries, do_set_msr)) < 0)
+	if ((r = __msr_io(vcpu, &msrs->info, msrs->entries, do_set_msr)) < 0)
 		return (-EINVAL);
 
 	*rv = r;
