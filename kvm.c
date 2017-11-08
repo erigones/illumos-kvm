@@ -2704,7 +2704,6 @@ kvm_ioctl(dev_t dev, int cmd, intptr_t arg, int md, cred_t *cr, int *rv)
 
 		now_ns = (int64_t)gethrtime();
 		kvmp->arch.kvmclock_offset = user_ns.clock - now_ns;
-		DTRACE_PROBE1(JANCI_KVMCLOCK_DELTA, int64_t, (int64_t)(user_ns.clock - now_ns));
 		break;
 	}
 	case KVM_GET_CLOCK: {
@@ -2725,7 +2724,6 @@ kvm_ioctl(dev_t dev, int cmd, intptr_t arg, int md, cred_t *cr, int *rv)
 		now_ns = (int64_t)gethrtime();
 		user_ns.clock = kvmp->arch.kvmclock_offset + now_ns;
 		user_ns.flags = 0;
-		DTRACE_PROBE1(JANCI_CLOCK, int64_t, (int64_t)now_ns);
 
 		rval = 0;
 		if (copyout(&user_ns, argp, sizeof(user_ns)) != 0)
