@@ -2607,11 +2607,6 @@ kvm_ioctl(dev_t dev, int cmd, intptr_t arg, int md, cred_t *cr, int *rv)
 			rval = EINVAL;
 			break;
 		}
-		if (user_ns.clock > INT64_MAX) {
-			/* refuse value that cannot be converted to hrtime_t */
-			rval = EINVAL;
-			break;
-		}
 
 		now_ns = gethrtime();
 		kvmp->arch.boot_hrtime = now_ns - (hrtime_t)user_ns.clock;
