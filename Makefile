@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019, Joyent, Inc.
+# Copyright 2019 Joyent, Inc.
 #
 
 include		$(PWD)/../../../build.env
@@ -117,6 +117,16 @@ KERNEL_CFLAGS = \
 	-gdwarf-2 \
 	-std=gnu99 \
 	-mno-red-zone
+
+#
+# Fix fbt entry probes.
+#
+ifneq ($(PRIMARY_COMPILER_VER),4)
+KERNEL_CFLAGS += \
+	-fno-shrink-wrap \
+	-mindirect-branch=thunk-extern \
+	-mindirect-branch-register
+endif
 
 USER_CFLAGS = \
 	-finline \
